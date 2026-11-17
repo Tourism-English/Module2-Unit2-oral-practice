@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>酒店英语口语练习</title>
+<style>
+  /* ========== 全局样式：酒店职业化主题 ========== */
+  :root {
+    --hotel-blue: #1a3a5c;        /* 酒店深蓝（主色） */
+    --hotel-blue-light: #2c5282;  /* 辅助蓝 */
+    --gold: #c9a96e;              /* 浅金（强调色） */
+    --gold-dark: #a8864a;
+    --dark-gray: #2d3748;         /* 深灰文字 */
+    --mid-gray: #4a5568;
+    --light-gray: #f4f6f9;        /* 页面背景 */
+    --card-bg: #ffffff;
+    --border: #e2e8f0;
+    --green: #2f855a;             /* 正确 */
+    --green-bg: #f0fff4;
+    --red: #c53030;               /* 错误 */
+    --red-bg: #fff5f5;
+    --black-word: #1a202c;        /* 难以判断 */
+    --radius: 10px;
+    --shadow: 0 2px 12px rgba(26, 58, 92, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Microsoft YaHei", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--light-gray);
+    color: var(--dark-gray);
+    line-height: 1.6;
+    padding: 20px 16px 60px;
+  }
+
+  .container { max-width: 1000px; margin: 0 auto; }
+
+  /* ========== 头部 ========== */
+  header {
+    background: linear-gradient(135deg, var(--hotel-blue) 0%, var(--hotel-blue-light) 100%);
+    color: #fff;
+    padding: 32px 28px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: "";
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(201, 169, 110, 0.12);
+  }
+  header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  header .subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+  }
+  header .tag {
+    display: inline-block;
+    margin-top: 12px;
+    background: var(--gold);
+    color: #1a1a1a;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* ========== 学习目标 ========== */
+  .goal-banner {
+    background: var(--card-bg);
+    border-left: 4px solid var(--gold);
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+  }
+  .goal-banner h3 {
+    font-size: 14px;
+    color: var(--hotel-blue);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .goal-banner p { font-size: 14px; color: var(--mid-gray); }
+
+  /* ========== 总进度 ========== */
+  .progress-wrap {
+    background: var(--card-bg);
+    padding: 18px 22px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+  }
+  .progress-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .progress-head .label { font-size: 14px; color: var(--mid-gray); }
+  .progress-head .stats { font-size: 14px; font-weight: 600; color: var(--hotel-blue); }
+  .progress-bar {
+    height: 10px;
+    background: var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .progress-bar .fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--hotel-blue-light), var(--gold));
+    border-radius: 6px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  /* ========== 句子卡片 ========== */
+  .sentence-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .card-head {
+    background: var(--hotel-blue);
+    color: #fff;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .card-head h2 { font-size: 18px; font-weight: 600; }
+  .card-head .mode-switch { display: flex; gap: 0; }
+
+  /* 模式切换按钮 */
+  .mode-btn {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 6px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .mode-btn:first-child { border-radius: 6px 0 0 6px; }
+  .mode-btn:last-child { border-radius: 0 6px 6px 0; border-left: none; }
+  .mode-btn.active {
+    background: var(--gold);
+    color: #1a1a1a;
+    font-weight: 600;
+    border-color: var(--gold);
+  }
+
+  .card-body { padding: 20px; }
+
+  /* 英文句子展示 */
+  .sentence-en {
+    font-size: 19px;
+    color: var(--dark-gray);
+    font-weight: 500;
+    line-height: 1.8;
+    margin-bottom: 10px;
+  }
+  .sentence-en .keyword {
+    background: #fef5e7;
+    color: var(--gold-dark);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    border-bottom: 2px solid var(--gold);
+  }
+  .sentence-zh {
+    font-size: 14px;
+    color: var(--mid-gray);
+    margin-bottom: 14px;
+    padding-left: 10px;
+    border-left: 3px solid var(--border);
+  }
+
+  /* 关键词提示 */
+  .keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .keywords .k-label {
+    font-size: 12px;
+    color: var(--mid-gray);
+    align-self: center;
+  }
+  .keywords .kw {
+    background: #fef5e7;
+    color: var(--gold-dark);
+    font-size: 13px;
+    padding: 3px 10px;
+    border-radius: 14px;
+    border: 1px solid #f0dfb8;
+  }
+
+  /* 操作步骤提示 */
+  .steps-hint {
+    font-size: 12px;
+    color: var(--mid-gray);
+    background: var(--light-gray);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 14px;
+  }
+  .steps-hint b { color: var(--hotel-blue); }
+
+  /* 按钮组 */
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .btn {
+    border: none;
+    padding: 9px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-primary { background: var(--hotel-blue); color: #fff; }
+  .btn-primary:hover:not(:disabled) { background: var(--hotel-blue-light); }
+  .btn-gold { background: var(--gold); color: #1a1a1a; }
+  .btn-gold:hover:not(:disabled) { background: var(--gold-dark); color: #fff; }
+  .btn-outline {
+    background: #fff;
+    color: var(--hotel-blue);
+    border: 1.5px solid var(--hotel-blue);
+  }
+  .btn-outline:hover:not(:disabled) { background: var(--hotel-blue); color: #fff; }
+  .btn-record { background: var(--red); color: #fff; }
+  .btn-record:hover:not(:disabled) { background: #9b2c2c; }
+  .btn-record.recording { background: #9b2c2c; animation: pulse 1.2s infinite; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  /* 分段练习区 */
+  .parts-area { display: none; flex-direction: column; gap: 12px; }
+  .parts-area.active { display: flex; }
+  .part-block {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    background: #fafbfc;
+  }
+  .part-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--hotel-blue);
+    margin-bottom: 6px;
+  }
+  .part-text {
+    font-size: 16px;
+    color: var(--dark-gray);
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+
+  /* 录音状态提示 */
+  .rec-status {
+    font-size: 13px;
+    color: var(--red);
+    margin-bottom: 10px;
+    min-height: 18px;
+    font-weight: 500;
+  }
+
+  /* 录音回放控件（未录音时为空并隐藏） */
+  .playback-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    min-height: 0;
+  }
+  .playback-area:empty { display: none; }
+  .playback-toggle {
+    border: 1px solid var(--gold-dark);
+    background: #fff;
+    color: var(--gold-dark);
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .playback-toggle:hover { background: #fff8e7; }
+  .playback-time {
+    font-size: 13px;
+    color: #666;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* 结果区 */
+  .result-area { display: none; margin-top: 8px; }
+  .result-area.active { display: block; }
+  .result-box {
+    background: var(--light-gray);
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  .result-box .r-label {
+    font-size: 12px;
+    color: var(--mid-gray);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .recognized-text {
+    font-size: 15px;
+    color: var(--dark-gray);
+    line-height: 1.7;
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px dashed var(--border);
+  }
+  .word-feedback {
+    font-size: 18px;
+    line-height: 2;
+    background: #fff;
+    padding: 12px;
+    border-radius: 6px;
+  }
+  .word-feedback .w {
+    display: inline-block;
+    margin: 0 3px;
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+  .word-feedback .w.green { color: var(--green); background: var(--green-bg); }
+  .word-feedback .w.red { color: var(--red); background: var(--red-bg); text-decoration: underline; text-decoration-color: var(--red); }
+  .word-feedback .w.black { color: var(--black-word); }
+
+  /* 得分与反馈 */
+  .score-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .score-badge {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--hotel-blue);
+    min-width: 120px;
+  }
+  .feedback-msg {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 6px;
+  }
+  .feedback-msg.good { background: var(--green-bg); color: var(--green); }
+  .feedback-msg.almost { background: #fffbeb; color: #b7791f; }
+  .feedback-msg.retry { background: var(--red-bg); color: var(--red); }
+
+  /* 浏览器不支持提示 */
+  .browser-warning {
+    background: #fff5f5;
+    color: var(--red);
+    border: 1px solid #fed7d7;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    display: none;
+  }
+  .browser-warning.show { display: block; }
+
+  /* 发音人选择面板 */
+  .voice-settings {
+    background: var(--card-bg);
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+  }
+  .vs-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .vs-label { font-size: 14px; font-weight: 600; color: var(--hotel-blue); }
+  .vs-select {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--dark-gray);
+    cursor: pointer;
+    min-width: 240px;
+    max-width: 100%;
+  }
+  .vs-select:focus { outline: none; border-color: var(--hotel-blue-light); }
+  .vs-tip {
+    font-size: 12px;
+    color: var(--mid-gray);
+    margin-top: 8px;
+  }
+
+  /* 在线语音服务状态 */
+  .backend-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .backend-tag {
+    font-size: 12.5px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .backend-tag.ok { background: #e6f4ea; color: #1e7e34; }
+  .backend-tag.off { background: #f0f0f0; color: #888; }
+  .btn-refresh {
+    font-size: 12px;
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--hotel-blue);
+    cursor: pointer;
+  }
+  .btn-refresh:hover { background: var(--hotel-blue); color: #fff; }
+
+  /* 上传标准音频按钮 & 标识 */
+  .upload-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .upload-btn {
+    background: #fff;
+    color: var(--hotel-blue);
+    border: 1.5px dashed var(--hotel-blue-light);
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .upload-btn:hover { background: var(--hotel-blue); color: #fff; }
+  .audio-source-tag {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .audio-source-tag.tts { background: #ebf8ff; color: #2b6cb0; }
+  .audio-source-tag.custom { background: #f0fff4; color: var(--green); }
+  .remove-audio-btn {
+    font-size: 12px;
+    color: var(--red);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 2px 6px;
+  }
+  .remove-audio-btn:hover { text-decoration: underline; }
+
+  /* 逐句导航栏 */
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .nav-indicator {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--hotel-blue);
+  }
+  .nav-hint {
+    text-align: center;
+    font-size: 12px;
+    color: var(--gold-dark);
+    margin-top: 8px;
+  }
+
+  /* 页脚提示 */
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--mid-gray);
+    margin-top: 30px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ========== 响应式适配 ========== */
+
+  /* —— 平板（768px ~ 1024px）—— */
+  @media (max-width: 1024px) {
+    body { padding: 16px 14px 50px; }
+    .container { max-width: 100%; }
+    header { padding: 26px 22px; }
+    header h1 { font-size: 24px; }
+    .card-body { padding: 18px; }
+    .sentence-en { font-size: 18px; }
+    .btn { padding: 8px 14px; font-size: 13.5px; }
+    .voice-settings { padding: 14px 16px; }
+    .vs-select { min-width: 200px; }
+  }
+
+  /* —— 手机（< 768px）—— */
+  @media (max-width: 767px) {
+    body { padding: 10px 8px 40px; }
+    header { padding: 20px 16px; }
+    header h1 { font-size: 21px; line-height: 1.3; }
+    header .subtitle { font-size: 13px; }
+    header .tag { font-size: 11px; }
+
+    .goal-banner { padding: 12px 14px; }
+    .goal-banner p { font-size: 13px; }
+
+    .progress-wrap { padding: 14px 16px; }
+    .progress-head .label, .progress-head .stats { font-size: 13px; }
+
+    .voice-settings { padding: 12px 14px; }
+    .vs-item { flex-direction: column; align-items: stretch; gap: 8px; }
+    .vs-label { font-size: 13px; }
+    .vs-select { width: 100%; min-width: 0; }
+    .vs-tip { font-size: 11px; }
+
+    .sentence-card { margin-bottom: 16px; }
+    .card-head {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      padding: 12px 16px;
+    }
+    .card-head h2 { font-size: 16px; }
+    .mode-switch { justify-content: center; }
+
+    .card-body { padding: 14px; }
+    .sentence-en { font-size: 16px; line-height: 1.7; }
+    .sentence-zh { font-size: 13px; }
+    .keywords .k-label { width: 100%; }
+    .keywords .kw { font-size: 12px; }
+
+    .steps-hint { font-size: 11px; padding: 7px 10px; }
+
+    .upload-row { gap: 8px; }
+    .upload-btn { font-size: 12px; padding: 5px 10px; }
+    .audio-source-tag { font-size: 11px; }
+
+    .btn-group { gap: 8px; }
+    .btn { padding: 8px 11px; font-size: 12.5px; }
+    .btn-record { width: 100%; justify-content: center; }
+
+    .part-block { padding: 12px; }
+    .part-text { font-size: 15px; }
+
+    .word-feedback { font-size: 15px; }
+    .recognized-text { font-size: 14px; }
+    .score-badge { font-size: 26px; min-width: 90px; }
+    .feedback-msg { font-size: 13px; padding: 5px 10px; }
+
+    .nav-row { flex-wrap: wrap; gap: 8px; }
+    .nav-row .btn { flex: 1; min-width: 100px; justify-content: center; }
+    .nav-indicator { order: -1; width: 100%; text-align: center; font-size: 13px; }
+    .nav-hint { font-size: 11px; }
+  }
+
+  /* —— 小屏手机（< 480px）紧凑模式 —— */
+  @media (max-width: 479px) {
+    body { padding: 8px 6px 36px; }
+    header { padding: 16px 12px; }
+    header h1 { font-size: 18px; }
+    .card-body { padding: 12px; }
+    .sentence-en { font-size: 15px; }
+    .btn { padding: 7px 10px; font-size: 12px; }
+    .btn-group { gap: 6px; }
+    .score-badge { font-size: 22px; }
+    .part-label { font-size: 12px; }
+    .part-text { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 头部 -->
+  <header>
+    <h1>酒店英语口语练习</h1>
+    <div class="subtitle">前台服务场景</div>
+    <span class="tag">酒店管理与数字化运营 · 英语口语</span>
+  </header>
+
+  <!-- 学习目标 -->
+  <div class="goal-banner">
+    <h3>学习目标</h3>
+    <p>完成练习后，学生将能够处理与预付房费、会员信息及收据相关的基础前台沟通。</p>
+  </div>
+
+  <!-- 总进度 -->
+  <div class="progress-wrap">
+    <div class="progress-head">
+      <span class="label">总体进度</span>
+      <span class="stats" id="overallStats">已完成 0 / 3 句 · 平均分 0</span>
+    </div>
+    <div class="progress-bar"><div class="fill" id="progressFill"></div></div>
+  </div>
+
+  <!-- 浏览器不支持提示 -->
+  <div class="browser-warning" id="browserWarning">
+    ⚠ 您的浏览器可能不支持语音识别功能。建议使用 Chrome 或 Edge 浏览器以获得完整的录音跟读体验。您仍可使用"播放标准音频"进行听读练习。
+  </div>
+
+  <!-- 句子卡片容器（由 JS 渲染） -->
+  <div id="cardsContainer"></div>
+
+  <footer>
+    提示：建议使用 Chrome / Edge 浏览器 · 先听标准音频 → 再跟读录音 → 查看反馈 → 再练一次
+  </footer>
+</div>
+
+<script>
+/* =========================================================
+ * 酒店英语口语跟读练习 - 核心逻辑
+ * 功能：标准音频播放 / 录音识别 / 逐词反馈 / 评分 / 分段练习
+ * ========================================================= */
+
+/* ---------- 1. 句子数据 ---------- */
+const SENTENCES = [
+  {
+    id: 1,
+    text: "The room is already prepaid. Thank you for your loyalty as our platinum member. We can offer an early check-in for you.",
+    chinese: "房间已经预付了。感谢您作为我们的白金会员一直以来的支持。我们可以为您提供提前入住服务。",
+    keywords: ["prepaid", "loyalty", "platinum member", "early check-in"],
+    parts: [
+      { label: "第一段", text: "The room is already prepaid." },
+      { label: "第二段", text: "Thank you for your loyalty as our platinum member." },
+      { label: "第三段", text: "We can offer an early check-in for you." }
+    ]
+  },
+  {
+    id: 2,
+    text: "Here is the hotel guest registration card. As you have the membership, your address is already in our system. Could you confirm if the address information associated with membership is correct?",
+    chinese: "这是酒店宾客登记卡。由于您是会员，您的地址已经录入我们的系统。您能确认一下与会员资格相关联的地址信息是否正确吗？",
+    keywords: ["guest registration card", "membership", "address", "confirm", "system"],
+    parts: [
+      { label: "第一段", text: "Here is the hotel guest registration card." },
+      { label: "第二段", text: "As you have the membership, your address is already in our system." },
+      { label: "第三段", text: "Could you confirm if the address information associated with membership is correct?" }
+    ]
+  },
+  {
+    id: 3,
+    text: "Would you like everything on the same receipt or separate?",
+    chinese: "您希望所有费用开在同一张收据上还是分开开？",
+    keywords: ["receipt", "same", "separate"],
+    parts: null  // 短句无需分段
+  }
+];
+
+/* ---------- 2. 状态管理 ---------- */
+// 每句最佳得分（用于总进度与平均分）
+const bestScores = { 1: null, 2: null, 3: null };
+// 每个句子当前模式：'parts' | 'full'
+const modes = { 1: 'parts', 2: 'parts', 3: 'full' };
+// 朗读序列号（用于中断旧朗读链，避免 cancel 副作用）
+let speechToken = 0;
+// 教师上传的真人标准音频：{ sentenceId: blobUrl }
+const customAudios = { 1: null, 2: null, 3: null };
+// 当前选中的发音人 voice 对象
+let selectedVoice = null;
+// 当前练习到第几句（0-based），逐句递进显示
+let currentSentenceIdx = 0;
+// 每句是否已完成（录过音即视为完成，可进入下一句）
+const sentenceCompleted = { 1: false, 2: false, 3: false };
+
+/* ---------- 3. 工具函数 ---------- */
+
+/**
+ * 归一化文本：转小写，去除标点，返回单词数组
+ */
+function normalizeWords(text) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s'-]/g, ' ')   // 移除非字母数字（保留撇号和连字符）
+    .replace(/\s+/g, ' ')
+    .trim()
+    .split(' ')
+    .filter(w => w.length > 0);
+}
+
+/**
+ * 计算两个单词的编辑距离（Levenshtein）
+ */
+function levenshtein(a, b) {
+  if (a === b) return 0;
+  if (!a.length) return b.length;
+  if (!b.length) return a.length;
+  const matrix = [];
+  for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+  for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      const cost = a[j - 1] === b[i - 1] ? 0 : 1;
+      matrix[i][j] = Math.min(
+        matrix[i - 1][j] + 1,
+        matrix[i][j - 1] + 1,
+        matrix[i - 1][j - 1] + cost
+      );
+    }
+  }
+  return matrix[b.length][a.length];
+}
+
+/**
+ * 逐词对比：原句 vs 识别结果
+ * 返回 [{word, status}]  status: 'green' | 'black' | 'red'
+ */
+function compareWords(original, recognized) {
+  const orig = normalizeWords(original);
+  const rec = normalizeWords(recognized);
+  const used = new Array(rec.length).fill(false);
+  const results = [];
+
+  for (const ow of orig) {
+    let bestIdx = -1;
+    let bestDist = Infinity;
+    for (let j = 0; j < rec.length; j++) {
+      if (used[j]) continue;
+      const d = levenshtein(ow, rec[j]);
+      if (d < bestDist) { bestDist = d; bestIdx = j; }
+    }
+    let status;
+    if (bestIdx === -1) {
+      status = 'red'; // 没识别到任何匹配
+    } else if (bestDist === 0) {
+      status = 'green'; // 完全正确
+      used[bestIdx] = true;
+    } else {
+      // 轻微偏差：短词允许差1，长词（>=5）允许差2
+      const threshold = ow.length >= 5 ? 2 : 1;
+      if (bestDist <= threshold) {
+        status = 'black'; // 基本可接受 / 难以判断
+        used[bestIdx] = true;
+      } else {
+        status = 'red';   // 明显错误
+      }
+    }
+    results.push({ word: ow, status, matched: bestIdx !== -1 ? rec[bestIdx] : null });
+  }
+  return results;
+}
+
+/**
+ * 根据对比结果计算得分
+ * green = 1 分, black = 0.5 分, red = 0 分
+ */
+function calculateScore(compareResult) {
+  if (compareResult.length === 0) return 0;
+  let total = 0;
+  for (const r of compareResult) {
+    if (r.status === 'green') total += 1;
+    else if (r.status === 'black') total += 0.5;
+  }
+  return Math.round((total / compareResult.length) * 100);
+}
+
+/**
+ * 根据得分返回反馈文案与样式级别
+ */
+function getFeedback(score) {
+  if (score >= 85) return { text: "很好。你的发音很清晰。", cls: "good" };
+  if (score >= 70) return { text: "差不多了。请注意红色单词。", cls: "almost" };
+  return { text: "再试一次。请先听标准音频。", cls: "retry" };
+}
+
+/**
+ * 高亮关键词：在英文句子中给关键词加 span
+ */
+function highlightKeywords(text, keywords) {
+  let html = escapeHtml(text);
+  for (const kw of keywords) {
+    // 不区分大小写，整体匹配
+    const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp('\\b' + escaped + '\\b', 'gi');
+    html = html.replace(re, m => `<span class="keyword">${m}</span>`);
+  }
+  return html;
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+/* ---------- 4. 语音合成（标准音频） ---------- */
+
+// 语速参数（更接近酒店前台自然服务语气）
+const RATE_NORMAL = 0.9;   // 正常播放：略慢于默认，保证清晰
+const RATE_SLOW = 0.65;    // 慢速播放：便于跟读
+const PITCH_NATURAL = 1.0; // 音调保持自然
+const SEGMENT_PAUSE_MS = 280; // 长句分段间短暂停顿（毫秒）
+
+// 在线 TTS 代理地址（同源，由 serve.ps1 转发到 Speechify；密钥只在服务端 .env 中）
+const BACKEND_TTS_URL = '/api/tts';
+// Speechify 音色 ID（公开目录标识，非密钥）：en-US 女声，simba-3.2 精选音色
+const SPEECHIFY_VOICE_ID = 'geffen_32';
+// 后端服务是否可用（启动时检测，不可用则回退到浏览器 TTS）
+let backendAvailable = false;
+// 已合成音频的前端 Blob 缓存：key = 文本；慢速播放复用同一音频，不重复请求
+const ttsBlobCache = new Map();
+
+/**
+ * 检测后端 TTS 服务是否可用
+ */
+async function checkBackend() {
+  try {
+    const r = await fetch('/api/health', { method: 'GET' });
+    backendAvailable = r.ok;
+  } catch (e) {
+    backendAvailable = false;
+  }
+  updateBackendStatus();
+}
+
+/**
+ * 更新页面上的后端服务状态标识
+ */
+function updateBackendStatus() {
+  let tag = document.getElementById('backendStatus');
+  if (!tag) return;
+  if (backendAvailable) {
+    tag.textContent = '🟢 在线语音服务已连接（Speechify）';
+    tag.className = 'backend-tag ok';
+  } else {
+    tag.textContent = '⚪ 在线语音服务未启动（使用浏览器 TTS）';
+    tag.className = 'backend-tag off';
+  }
+}
+
+// 预加载语音列表（Chrome 中 getVoices 初始可能为空，需监听 voiceschanged）
+let voicesLoaded = false;
+
+/**
+ * 加载浏览器可用语音，优先筛选自然度较高的英文语音（en-US / en-GB）
+ */
+function loadVoices() {
+  if (!('speechSynthesis' in window)) return;
+  const voices = speechSynthesis.getVoices();
+  voicesLoaded = voices.length > 0;
+  if (!voicesLoaded) return;
+
+  // 优先筛选英文语音（en-US / en-GB 等）；若无英文语音则回退显示全部语音
+  let enVoices = voices.filter(v => /^en/i.test(v.lang));
+  const isFallback = enVoices.length === 0;
+  if (isFallback) enVoices = voices;
+
+  const select = document.getElementById('voiceSelect');
+  if (!select) return;
+
+  select.innerHTML = '';
+  enVoices.forEach((v, idx) => {
+    const opt = document.createElement('option');
+    opt.value = idx;
+    opt.textContent = `${v.name} (${v.lang})${v.default ? ' · 默认' : ''}`;
+    select.appendChild(opt);
+  });
+
+  // 默认选择：优先 en-US 自然女声，其次任意 en-US，再次任意英文；回退模式选第一个
+  const naturalIdx = enVoices.findIndex(v =>
+    /en[-_]US/i.test(v.lang) && /female|samantha|google.*us|zira|natural|neural/i.test(v.name)
+  );
+  const enUsIdx = enVoices.findIndex(v => /en[-_]US/i.test(v.lang));
+  const defaultIdx = isFallback ? 0 : (naturalIdx >= 0 ? naturalIdx : (enUsIdx >= 0 ? enUsIdx : 0));
+
+  if (defaultIdx >= 0 && enVoices[defaultIdx]) {
+    select.value = defaultIdx;
+    selectedVoice = enVoices[defaultIdx];
+  } else {
+    selectedVoice = null;
+  }
+}
+
+// 监听发音人切换
+document.addEventListener('change', (e) => {
+  if (e.target && e.target.id === 'voiceSelect') {
+    let voices = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang));
+    if (voices.length === 0) voices = speechSynthesis.getVoices();
+    selectedVoice = voices[parseInt(e.target.value)] || null;
+  }
+});
+
+if ('speechSynthesis' in window) {
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+/**
+ * 创建单个 utterance（统一封装，避免分散配置）
+ * @param {string} text 文本
+ * @param {number} rate 语速
+ */
+function createUtterance(text, rate) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = rate;
+  u.pitch = PITCH_NATURAL;
+  u.volume = 1.0;
+  // 使用用户选中的发音人；若未选中则回退到自然英文语音
+  if (selectedVoice) {
+    u.voice = selectedVoice;
+    u.lang = selectedVoice.lang;
+  } else {
+    const voices = speechSynthesis.getVoices();
+    const fallback = voices.find(v => /en[-_]US/i.test(v.lang) && /female|samantha|google|zira|natural/i.test(v.name))
+      || voices.find(v => /^en/i.test(v.lang));
+    if (fallback) { u.voice = fallback; u.lang = fallback.lang; }
+    else { u.lang = 'en-US'; }
+  }
+  return u;
+}
+
+/**
+ * 将长文本按标点切分为有意义的小段（句号/问号/感叹号/逗号），
+ * 使朗读更接近真实酒店服务的自然停顿节奏，而非机械连读。
+ */
+function splitIntoSegments(text) {
+  // 先按句末标点切，再对过长的逗号子句做二次切分
+  const sentences = text.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 0);
+  const segments = [];
+  for (const sent of sentences) {
+    // 单句超过 12 词时，按逗号进一步拆分
+    const words = sent.trim().split(/\s+/);
+    if (words.length > 12) {
+      const parts = sent.split(/(?<=,)\s+/);
+      segments.push(...parts.filter(p => p.trim().length > 0));
+    } else {
+      segments.push(sent.trim());
+    }
+  }
+  return segments.length > 0 ? segments : [text];
+}
+
+/**
+ * 朗读文本（长句自动分段 + 段间短暂停顿）
+ * @param {string} text 文本
+ * @param {number} rate 语速
+ */
+function speak(text, rate = RATE_NORMAL) {
+  return new Promise((resolve) => {
+    if (!('speechSynthesis' in window)) { resolve(); return; }
+    const token = ++speechToken;
+    speechSynthesis.cancel();
+
+    const segments = splitIntoSegments(text);
+    let idx = 0;
+
+    const playNext = () => {
+      if (token !== speechToken) { resolve(); return; } // 已被新朗读中断
+      if (idx >= segments.length) { resolve(); return; }
+
+      const u = createUtterance(segments[idx], rate);
+      // 最后一段读完直接结束；非最后一段读完后短暂停顿再继续
+      u.onend = () => {
+        idx++;
+        if (idx >= segments.length) {
+          if (token === speechToken) resolve();
+        } else {
+          setTimeout(playNext, SEGMENT_PAUSE_MS);
+        }
+      };
+      u.onerror = () => { if (token === speechToken) resolve(); };
+      speechSynthesis.speak(u);
+    };
+    playNext();
+  });
+}
+
+/**
+ * 分段朗读：按顺序朗读多个 part，段间自然衔接（实现见下方 speakParts）
+ */
+
+/**
+ * 播放教师上传的真人音频（优先）
+ * @param {number} sentenceId 句子 id
+ * @returns {Promise<boolean>} 是否播放了自定义音频
+ */
+function playCustomAudio(sentenceId) {
+  return new Promise((resolve) => {
+    const url = customAudios[sentenceId];
+    if (!url) { resolve(false); return; }
+    const audio = new Audio(url);
+    activeAudioEl = audio;
+    audio.onended = () => { if (activeAudioEl === audio) activeAudioEl = null; resolve(true); };
+    audio.onerror = () => { if (activeAudioEl === audio) activeAudioEl = null; resolve(false); }; // 播放失败则回退 TTS
+    audio.play().catch(() => { if (activeAudioEl === audio) activeAudioEl = null; resolve(false); });
+  });
+}
+
+/**
+ * 在按钮附近的状态条显示"在线语音不可用"回退提示
+ * @param {HTMLElement} btn 触发播放的按钮
+ */
+function showOnlineFallback(btn) {
+  const container = btn ? btn.closest('.part-block, .full-area') : null;
+  const el = container ? container.querySelector('.rec-status') : null;
+  if (!el) return;
+  el.textContent = '在线语音不可用，已切换为浏览器语音';
+  el.style.color = 'var(--gold-dark)';
+  setTimeout(() => { if (el.textContent === '在线语音不可用，已切换为浏览器语音') el.textContent = ''; }, 5000);
+}
+
+/**
+ * 播放 Blob 音频；慢速用 playbackRate=0.7 实现，不再重复请求接口
+ * @param {string} blobUrl 音频 Blob 地址
+ * @param {number} rate 语速参数
+ */
+function playAudioBlob(blobUrl, rate) {
+  return new Promise((resolve) => {
+    const audio = new Audio(blobUrl);
+    activeAudioEl = audio;
+    audio.playbackRate = rate === RATE_SLOW ? 0.7 : 1.0;
+    audio.onended = () => { if (activeAudioEl === audio) activeAudioEl = null; resolve(true); };
+    audio.onerror = () => { if (activeAudioEl === audio) activeAudioEl = null; resolve(false); };
+    audio.play().catch(() => { if (activeAudioEl === audio) activeAudioEl = null; resolve(false); });
+  });
+}
+
+/**
+ * 调用在线 TTS 代理（Speechify）生成并播放音频
+ * 同一文本只请求一次，结果缓存为 Blob；慢速播放复用缓存并调 playbackRate
+ * @param {string} text 要朗读的文本
+ * @param {number} rate 语速参数（RATE_NORMAL / RATE_SLOW）
+ * @param {HTMLElement} [btn] 触发按钮，用于"生成中…"禁用态
+ * @returns {Promise<boolean>} 是否成功播放（失败则调用方应回退到浏览器 TTS）
+ */
+async function playBackendTts(text, rate = RATE_NORMAL, btn = null) {
+  if (!backendAvailable) return false;
+
+  // 按钮切换为"生成中…"禁用态
+  let originalText = null;
+  if (btn) {
+    originalText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = '生成中…';
+  }
+  const restoreBtn = () => {
+    if (btn) { btn.disabled = false; btn.textContent = originalText; }
+  };
+
+  try {
+    let blobUrl = ttsBlobCache.get(text);
+    if (!blobUrl) {
+      const resp = await fetch(BACKEND_TTS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text, voiceId: SPEECHIFY_VOICE_ID })
+      });
+      if (!resp.ok) { restoreBtn(); return false; }
+      const blob = await resp.blob();
+      blobUrl = URL.createObjectURL(blob);
+      ttsBlobCache.set(text, blobUrl);
+    }
+    const ok = await playAudioBlob(blobUrl, rate);
+    restoreBtn();
+    return ok;
+  } catch (e) {
+    console.warn('[在线 TTS] 请求失败，回退到浏览器 TTS:', e);
+    restoreBtn();
+    return false;
+  }
+}
+
+/**
+ * 统一的"播放标准音频"入口
+ * 优先级：教师上传真人音频 → 在线 Speechify TTS → 浏览器本地 TTS（兜底）
+ * @param {number} sentenceId 句子 id
+ * @param {string} text 朗读文本
+ * @param {number} rate 语速
+ * @param {HTMLElement} [btn] 触发按钮
+ */
+async function playModelAudio(sentenceId, text, rate = RATE_NORMAL, btn = null) {
+  // 1. 优先播放教师上传的真人音频（不调 TTS）
+  const played = await playCustomAudio(sentenceId);
+  if (played) return;
+  // 2. 调用在线 Speechify TTS（自然神经网络语音）
+  const backendPlayed = await playBackendTts(text, rate, btn);
+  if (backendPlayed) return;
+  // 3. 兜底：浏览器本地 TTS，并提示已回退
+  showOnlineFallback(btn);
+  await speak(text, rate);
+}
+
+/**
+ * 分段朗读：按顺序朗读多个 part（优先在线 TTS，兜底浏览器 TTS）
+ */
+async function speakParts(parts, rate = RATE_NORMAL) {
+  for (const p of parts) {
+    if (speechToken === 0) return;
+    // 先尝试在线 TTS，失败则用浏览器 TTS
+    const ok = await playBackendTts(p.text, rate);
+    if (!ok) await speak(p.text, rate);
+  }
+}
+
+/* ---------- 5. 语音识别 + 录音采集 + 回放 ---------- */
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognitionSupported = !!SpeechRecognition;
+const MAX_RECORD_SECONDS = 30;   // 录音兜底自动停止（秒）
+
+// —— 录音状态（并行双采集：SpeechRecognition 评分 + MediaRecorder 采集回放） ——
+let activeRecognition = null;    // 当前 SpeechRecognition 实例
+let activeMediaRecorder = null;  // 当前 MediaRecorder 实例
+let activeAudioChunks = [];      // MediaRecorder 采集的音频块
+let activeMediaStream = null;    // 当前 getUserMedia 流
+let isRecording = false;         // 是否正在录音
+let recTimer = null;             // 计时器 id
+let recSeconds = 0;              // 已录秒数
+let activeRecordBtn = null;      // 当前录音按钮
+let activeRecordSid = null;      // 当前录音句子 id
+let activeRecordPart = null;     // 当前录音 part（'full' 或数字）
+
+// —— 标准音频互斥：记录当前播放中的 HTMLAudioElement ——
+let activeAudioEl = null;
+
+// —— 回放缓存：key `${sid}|${part}` → { blobUrl, audio } ——
+const playbackCache = new Map();
+
+/**
+ * 秒 → "mm:ss"
+ */
+function formatTime(sec) {
+  const s = Math.max(0, Math.floor(sec || 0));
+  const m = Math.floor(s / 60);
+  const r = s % 60;
+  return `${String(m).padStart(2, '0')}:${String(r).padStart(2, '0')}`;
+}
+
+/**
+ * SpeechRecognition 错误码 → 中文提示
+ */
+function recognitionErrorMessage(code) {
+  switch (code) {
+    case 'not-allowed':
+    case 'service-not-allowed':
+      return '麦克风权限被拒绝，请点击地址栏左侧图标允许麦克风后重试';
+    case 'audio-capture':
+      return '未检测到麦克风，或设备被其他应用占用，请检查后重试';
+    case 'network':
+      return '语音识别服务网络异常，请检查网络后重试';
+    case 'not-supported':
+      return '⚠ 浏览器不支持语音识别，请使用 Chrome 或 Edge。';
+    default:
+      return '未识别到语音，请再试一次。';
+  }
+}
+
+/**
+ * 启动一次语音识别（仅评分用，不产出音频）
+ * @returns {Promise<string>} 识别文本；出错则 reject({ code })
+ */
+function recordOnce() {
+  return new Promise((resolve, reject) => {
+    if (!recognitionSupported) { reject({ code: 'not-supported' }); return; }
+    const rec = new SpeechRecognition();
+    rec.lang = 'en-US';
+    rec.continuous = false;
+    rec.interimResults = false;
+    rec.maxAlternatives = 1;
+    activeRecognition = rec;
+
+    let settled = false;
+    let finalText = '';
+    rec.onresult = (e) => { finalText = e.results[0][0].transcript; };
+    rec.onerror = (e) => {
+      if (settled) return;
+      settled = true;
+      reject({ code: e.error });
+    };
+    rec.onend = () => {
+      if (settled) return;
+      settled = true;
+      resolve(finalText);
+    };
+    try {
+      rec.start();
+    } catch (err) {
+      if (settled) return;
+      settled = true;
+      reject({ code: 'start-failed' });
+    }
+  });
+}
+
+/**
+ * 停止当前 SpeechRecognition（触发 onend，从而结束识别 Promise）
+ */
+function stopActiveRecognition() {
+  if (activeRecognition) {
+    try { activeRecognition.stop(); } catch (e) { /* 忽略 */ }
+    activeRecognition = null;
+  }
+}
+
+/**
+ * 开始 MediaRecorder 音频采集（回放用）
+ */
+async function startAudioCapture() {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    throw { name: 'NotFoundError' };
+  }
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  activeMediaStream = stream;
+  activeAudioChunks = [];
+  const rec = new MediaRecorder(stream);
+  rec.ondataavailable = (e) => { if (e.data && e.data.size > 0) activeAudioChunks.push(e.data); };
+  activeMediaRecorder = rec;
+  rec.start();
+}
+
+/**
+ * 停止 MediaRecorder 采集，返回录音 Blob（无数据则返回 null）
+ */
+function stopAudioCapture() {
+  return new Promise((resolve) => {
+    const rec = activeMediaRecorder;
+    if (!rec || rec.state === 'inactive') {
+      activeMediaRecorder = null;
+      releaseStream();
+      resolve(null);
+      return;
+    }
+    rec.onstop = () => {
+      const blob = activeAudioChunks.length > 0
+        ? new Blob(activeAudioChunks, { type: rec.mimeType || 'audio/webm' })
+        : null;
+      activeAudioChunks = [];
+      activeMediaRecorder = null;
+      releaseStream();
+      resolve(blob);
+    };
+    try { rec.stop(); } catch (e) { releaseStream(); resolve(null); }
+  });
+}
+
+function releaseStream() {
+  if (activeMediaStream) {
+    activeMediaStream.getTracks().forEach(t => { try { t.stop(); } catch (e) {} });
+    activeMediaStream = null;
+  }
+}
+
+/**
+ * 开始录音计时（每秒更新按钮文案，30 秒兜底自动停止）
+ */
+function startRecTimer(btn) {
+  recSeconds = 0;
+  recTimer = setInterval(() => {
+    recSeconds++;
+    btn.textContent = `⏹ 停止录音 · ${formatTime(recSeconds)}`;
+    if (recSeconds >= MAX_RECORD_SECONDS) {
+      stopActiveRecognition(); // 触发主流程停止采集
+    }
+  }, 1000);
+}
+
+/**
+ * 结束录音的 UI 收尾：恢复按钮、清计时器、复位状态
+ */
+function finishRecordingUI() {
+  isRecording = false;
+  if (recTimer) { clearInterval(recTimer); recTimer = null; }
+  if (activeRecordBtn) {
+    activeRecordBtn.textContent = '● 开始录音';
+    activeRecordBtn.classList.remove('recording');
+    activeRecordBtn = null;
+  }
+  activeRecordSid = null;
+  activeRecordPart = null;
+}
+
+/* —— 回放 —— */
+
+/**
+ * 录音结束后生成回放（先清理旧的，避免内存泄漏）
+ */
+function setupPlayback(sid, part, blob) {
+  clearPlayback(sid, part);
+  const blobUrl = URL.createObjectURL(blob);
+  const audio = new Audio(blobUrl);
+  audio.addEventListener('loadedmetadata', () => updatePlaybackTime(sid, part));
+  audio.addEventListener('timeupdate', () => updatePlaybackTime(sid, part));
+  audio.addEventListener('ended', () => {
+    audio.currentTime = 0;
+    const btn = playbackBtn(sid, part);
+    if (btn) btn.textContent = '▶ 播放我的录音';
+    updatePlaybackTime(sid, part);
+  });
+  playbackCache.set(`${sid}|${part}`, { blobUrl, audio });
+  renderPlaybackControl(sid, part);
+}
+
+function playbackBtn(sid, part) {
+  return document.querySelector(`[data-action="toggle-playback"][data-sentence="${sid}"][data-part="${part}"]`);
+}
+
+/**
+ * 清理某句/某段的回放：revoke objectURL、暂停并释放 audio、清空 DOM
+ */
+function clearPlayback(sid, part) {
+  const key = `${sid}|${part}`;
+  const entry = playbackCache.get(key);
+  if (entry) {
+    if (entry.blobUrl) { try { URL.revokeObjectURL(entry.blobUrl); } catch (e) {} }
+    if (entry.audio) { try { entry.audio.pause(); } catch (e) {} entry.audio.src = ''; }
+    playbackCache.delete(key);
+  }
+  const container = document.querySelector(`[data-role="playback"][data-sentence="${sid}"][data-part="${part}"]`);
+  if (container) container.innerHTML = '';
+}
+
+/**
+ * 渲染回放控件（播放/暂停按钮 + 时长）
+ */
+function renderPlaybackControl(sid, part) {
+  const container = document.querySelector(`[data-role="playback"][data-sentence="${sid}"][data-part="${part}"]`);
+  if (!container) return;
+  const entry = playbackCache.get(`${sid}|${part}`);
+  if (!entry) { container.innerHTML = ''; return; }
+  container.innerHTML = `
+    <button class="playback-toggle" data-action="toggle-playback" data-sentence="${sid}" data-part="${part}">▶ 播放我的录音</button>
+    <span class="playback-time" data-sentence="${sid}" data-part="${part}">00:00 / 00:00</span>
+  `;
+  const btn = container.querySelector('[data-action="toggle-playback"]');
+  if (btn) btn.addEventListener('click', handleAction);
+}
+
+/**
+ * 更新回放时长显示
+ */
+function updatePlaybackTime(sid, part) {
+  const entry = playbackCache.get(`${sid}|${part}`);
+  if (!entry) return;
+  const el = document.querySelector(`[data-role="playback"][data-sentence="${sid}"][data-part="${part}"] .playback-time`);
+  if (!el) return;
+  el.textContent = `${formatTime(entry.audio.currentTime)} / ${formatTime(entry.audio.duration)}`;
+}
+
+/**
+ * 播放/暂停回放（由用户点击触发）
+ */
+function togglePlayback(sid, part) {
+  const entry = playbackCache.get(`${sid}|${part}`);
+  if (!entry) return;
+  const audio = entry.audio;
+  const btn = playbackBtn(sid, part);
+  if (!audio.paused) {
+    audio.pause();
+    if (btn) btn.textContent = '▶ 播放我的录音';
+    return;
+  }
+  pauseStandardAudio();
+  audio.play().then(() => {
+    if (btn) btn.textContent = '⏸ 暂停';
+  }).catch(() => {});
+}
+
+/**
+ * 暂停标准音频（真人音频 / TTS Blob / 浏览器 TTS）
+ */
+function pauseStandardAudio() {
+  if (activeAudioEl) {
+    try { activeAudioEl.pause(); } catch (e) {}
+    activeAudioEl = null;
+  }
+  speechToken++;
+  if ('speechSynthesis' in window) { try { speechSynthesis.cancel(); } catch (e) {} }
+}
+
+/**
+ * 暂停所有回放音频（标准音频播放前调用）
+ */
+function pausePlaybackAudio() {
+  playbackCache.forEach((entry, key) => {
+    if (entry.audio && !entry.audio.paused) {
+      entry.audio.pause();
+      const [sid, part] = key.split('|');
+      const btn = playbackBtn(sid, part);
+      if (btn) btn.textContent = '▶ 播放我的录音';
+    }
+  });
+}
+
+// 页面刷新/离开时释放所有回放 objectURL，避免内存泄漏
+window.addEventListener('beforeunload', () => {
+  playbackCache.forEach((entry) => {
+    if (entry.blobUrl) { try { URL.revokeObjectURL(entry.blobUrl); } catch (e) {} }
+    if (entry.audio) { try { entry.audio.pause(); } catch (e) {} }
+  });
+});
+
+/* ---------- 6. 渲染界面 ---------- */
+
+function renderCards() {
+  const container = document.getElementById('cardsContainer');
+  // 只渲染当前句子（逐句递进）
+  const s = SENTENCES[currentSentenceIdx];
+  container.innerHTML = renderCard(s);
+  bindCardEvents();
+  // 恢复已有回放控件（切句/切模式后重建 DOM，需重新渲染回放按钮）
+  playbackCache.forEach((entry, key) => {
+    const [sid, part] = key.split('|');
+    renderPlaybackControl(parseInt(sid), part === 'full' ? 'full' : parseInt(part));
+  });
+}
+
+function renderCard(s) {
+  const hasParts = s.parts && s.parts.length > 0;
+  const mode = modes[s.id];
+
+  const partsHtml = hasParts ? s.parts.map((p, i) => `
+    <div class="part-block" data-sentence="${s.id}" data-part="${i}">
+      <div class="part-label">${p.label}</div>
+      <div class="part-text">${highlightKeywords(p.text, s.keywords)}</div>
+      <div class="btn-group">
+        <button class="btn btn-primary" data-action="play-part" data-sentence="${s.id}" data-part="${i}">▶ 播放标准音频</button>
+        <button class="btn btn-outline" data-action="slow-part" data-sentence="${s.id}" data-part="${i}">🐢 慢速播放</button>
+        <button class="btn btn-record" data-action="record-part" data-sentence="${s.id}" data-part="${i}">● 开始录音</button>
+      </div>
+      <div class="playback-area" data-role="playback" data-sentence="${s.id}" data-part="${i}"></div>
+      <div class="rec-status" data-role="status" data-sentence="${s.id}" data-part="${i}"></div>
+      <div class="result-area" data-role="result" data-sentence="${s.id}" data-part="${i}"></div>
+    </div>
+  `).join('') : '';
+
+  // 模式切换按钮仅对长句显示
+  const modeSwitch = hasParts ? `
+    <div class="mode-switch">
+      <button class="mode-btn ${mode === 'parts' ? 'active' : ''}" data-action="switch-mode" data-sentence="${s.id}" data-mode="parts">分段练习</button>
+      <button class="mode-btn ${mode === 'full' ? 'active' : ''}" data-action="switch-mode" data-sentence="${s.id}" data-mode="full">整句挑战</button>
+    </div>
+  ` : '';
+
+  return `
+    <div class="sentence-card" data-sentence="${s.id}">
+      <div class="card-head">
+        <h2>句子 ${s.id}</h2>
+        ${modeSwitch}
+      </div>
+      <div class="card-body">
+        <div class="sentence-en">${highlightKeywords(s.text, s.keywords)}</div>
+        <div class="sentence-zh">${s.chinese}</div>
+        <div class="keywords">
+          <span class="k-label">关键词：</span>
+          ${s.keywords.map(k => `<span class="kw">${k}</span>`).join('')}
+        </div>
+
+        <!-- 练习步骤提示 -->
+        <div class="steps-hint">
+          <b>步骤：</b> ① 听标准音频 → ② 录音跟读 → ③ 查看单词颜色与得分 → ④ 再练一次
+        </div>
+
+        <!-- 上传真人标准音频 & 音频来源标识 -->
+        <div class="upload-row">
+          <label class="upload-btn" for="audioUpload-${s.id}">
+            🎵 上传标准音频 (MP3/WAV)
+          </label>
+          <input type="file" id="audioUpload-${s.id}" accept="audio/*" style="display:none;"
+                 data-action="upload-audio" data-sentence="${s.id}" />
+          <span class="audio-source-tag ${customAudios[s.id] ? 'custom' : 'tts'}" data-role="audio-tag" data-sentence="${s.id}">
+            ${customAudios[s.id] ? '🎧 真人录音' : '🔊 TTS 合成语音'}
+          </span>
+          ${customAudios[s.id] ? `<button class="remove-audio-btn" data-action="remove-audio" data-sentence="${s.id}">✕ 移除</button>` : ''}
+        </div>
+
+        <!-- 分段练习区 -->
+        <div class="parts-area ${mode === 'parts' ? 'active' : ''}" data-role="parts-area" data-sentence="${s.id}">
+          ${partsHtml}
+        </div>
+
+        <!-- 整句挑战区 -->
+        <div class="full-area" data-role="full-area" data-sentence="${s.id}" style="display:${mode === 'full' || !hasParts ? 'block' : 'none'}">
+          <div class="btn-group">
+            <button class="btn btn-primary" data-action="play-full" data-sentence="${s.id}">▶ 播放标准音频</button>
+            <button class="btn btn-outline" data-action="slow-full" data-sentence="${s.id}">🐢 慢速播放</button>
+            <button class="btn btn-record" data-action="record-full" data-sentence="${s.id}">● 开始录音</button>
+            <button class="btn btn-gold" data-action="retry-full" data-sentence="${s.id}" style="display:none;">↻ 再练一次</button>
+          </div>
+          <div class="playback-area" data-role="playback" data-sentence="${s.id}" data-part="full"></div>
+          <div class="rec-status" data-role="status" data-sentence="${s.id}" data-part="full"></div>
+          <div class="result-area" data-role="result" data-sentence="${s.id}" data-part="full"></div>
+        </div>
+
+        <!-- 逐句导航：上一句 / 下一句 -->
+        <div class="nav-row">
+          <button class="btn btn-outline" data-action="prev-sentence" data-sentence="${s.id}"
+                  ${currentSentenceIdx === 0 ? 'disabled' : ''}>← 上一句</button>
+          <span class="nav-indicator">句子 ${currentSentenceIdx + 1} / ${SENTENCES.length}</span>
+          <button class="btn btn-primary" data-action="next-sentence" data-sentence="${s.id}"
+                  ${currentSentenceIdx >= SENTENCES.length - 1 || !sentenceCompleted[s.id] ? 'disabled' : ''}>
+            下一句 →
+          </button>
+        </div>
+        ${!sentenceCompleted[s.id] ? '<div class="nav-hint">完成本句录音后即可解锁下一句</div>' : ''}
+      </div>
+    </div>
+  `;
+}
+
+/* ---------- 7. 事件绑定与交互 ---------- */
+
+function bindCardEvents() {
+  document.querySelectorAll('[data-action]').forEach(btn => {
+    btn.addEventListener('click', handleAction);
+  });
+}
+
+async function handleAction(e) {
+  const btn = e.currentTarget;
+  const action = btn.dataset.action;
+  const sid = parseInt(btn.dataset.sentence);
+  const partIdx = btn.dataset.part !== undefined ? (btn.dataset.part === 'full' ? 'full' : parseInt(btn.dataset.part)) : null;
+  const s = SENTENCES.find(x => x.id === sid);
+
+  switch (action) {
+    case 'switch-mode': {
+      modes[sid] = btn.dataset.mode;
+      // 重新渲染该卡片
+      renderCards();
+      break;
+    }
+    case 'play-part':
+      // 分段练习：优先在线 Speechify TTS，失败则回退浏览器 TTS
+      pausePlaybackAudio();
+      (async () => {
+        const ok = await playBackendTts(s.parts[partIdx].text, RATE_NORMAL, btn);
+        if (!ok) { showOnlineFallback(btn); speak(s.parts[partIdx].text, RATE_NORMAL); }
+      })();
+      break;
+    case 'slow-part':
+      pausePlaybackAudio();
+      (async () => {
+        const ok = await playBackendTts(s.parts[partIdx].text, RATE_SLOW, btn);
+        if (!ok) { showOnlineFallback(btn); speak(s.parts[partIdx].text, RATE_SLOW); }
+      })();
+      break;
+    case 'record-part':
+      await doRecording(sid, partIdx, s.parts[partIdx].text);
+      break;
+    case 'play-full':
+      // 整句播放：优先真人上传音频，否则在线 TTS
+      pausePlaybackAudio();
+      playModelAudio(sid, s.text, RATE_NORMAL, btn);
+      break;
+    case 'slow-full':
+      pausePlaybackAudio();
+      playModelAudio(sid, s.text, RATE_SLOW, btn);
+      break;
+    case 'record-full':
+      await doRecording(sid, 'full', s.text);
+      break;
+    case 'toggle-playback':
+      togglePlayback(sid, partIdx);
+      break;
+    case 'retry-full':
+      resetResult(sid, 'full');
+      break;
+    case 'retry-part':
+      resetResult(sid, partIdx);
+      break;
+    case 'remove-audio':
+      // 移除已上传的真人音频，回退到 TTS
+      customAudios[sid] = null;
+      renderCards();
+      break;
+    case 'prev-sentence':
+      if (currentSentenceIdx > 0) {
+        currentSentenceIdx--;
+        renderCards();
+      }
+      break;
+    case 'next-sentence':
+      // 仅当当前句已完成录音且不是最后一句时，进入下一句
+      if (sentenceCompleted[sid] && currentSentenceIdx < SENTENCES.length - 1) {
+        currentSentenceIdx++;
+        renderCards();
+      }
+      break;
+  }
+}
+
+/**
+ * 处理教师上传真人标准音频
+ * @param {number} sid 句子 id
+ * @param {File} file 音频文件
+ */
+function handleAudioUpload(sid, file) {
+  if (!file) return;
+  if (!file.type.startsWith('audio/')) {
+    alert('请上传音频文件（MP3/WAV 等）。');
+    return;
+  }
+  const url = URL.createObjectURL(file);
+  customAudios[sid] = url;
+  renderCards();
+}
+
+// 监听文件上传（事件委托）
+document.addEventListener('change', (e) => {
+  const target = e.target;
+  if (target && target.dataset && target.dataset.action === 'upload-audio') {
+    const sid = parseInt(target.dataset.sentence);
+    handleAudioUpload(sid, target.files[0]);
+  }
+});
+
+/**
+ * 执行录音并显示结果
+ * @param {number} sid 句子 id
+ * @param {number|string} part 'full' 或 分段索引
+ * @param {string} targetText 目标文本
+ */
+async function doRecording(sid, part, targetText) {
+  if (!recognitionSupported) {
+    showStatus(sid, part, '⚠ 浏览器不支持语音识别，请使用 Chrome 或 Edge。', true);
+    return;
+  }
+  const btn = document.querySelector(`[data-action="record-${part === 'full' ? 'full' : 'part'}"][data-sentence="${sid}"]${part !== 'full' ? `[data-part="${part}"]` : ''}`);
+  if (!btn) return;
+
+  // 正在录音时，本次点击视为"手动停止"
+  if (isRecording) {
+    stopActiveRecognition(); // 触发主流程继续并停止采集
+    return;
+  }
+
+  // 开始新录音：先清理旧的回放（revoke objectURL，避免内存泄漏）
+  clearPlayback(sid, part);
+
+  // 初始化录音状态
+  isRecording = true;
+  activeRecordBtn = btn;
+  activeRecordSid = sid;
+  activeRecordPart = part;
+  btn.textContent = '⏹ 停止录音 · 00:00';
+  btn.classList.add('recording');
+  showStatus(sid, part, '🔴 正在录音，请朗读句子...');
+
+  // 启动计时器（含 30 秒兜底自动停止）
+  startRecTimer(btn);
+
+  // 并行启动：MediaRecorder 采集（回放）+ SpeechRecognition（评分）
+  const capturePromise = startAudioCapture().catch((err) => err);
+  const recognitionPromise = recordOnce().catch((err) => err);
+
+  // 等待麦克风采集就绪（失败则按权限/设备错误提示）
+  const captureErr = await capturePromise;
+  if (captureErr) {
+    stopActiveRecognition();
+    await stopAudioCapture();
+    finishRecordingUI();
+    const code = (captureErr.name === 'NotAllowedError' || captureErr.name === 'SecurityError') ? 'not-allowed' : 'audio-capture';
+    showStatus(sid, part, recognitionErrorMessage(code), true);
+    return;
+  }
+
+  // 等待识别结束（自然结束 / 手动停止 / 30 秒兜底）
+  const recognitionResult = await recognitionPromise;
+
+  // 识别结束即停止采集，拿到录音 Blob
+  const blob = await stopAudioCapture();
+  finishRecordingUI();
+
+  // 权限 / 设备 / 网络类识别错误（no-speech 单独处理）
+  if (recognitionResult && typeof recognitionResult !== 'string' && recognitionResult.code !== 'no-speech') {
+    showStatus(sid, part, recognitionErrorMessage(recognitionResult.code), true);
+    return;
+  }
+
+  const text = typeof recognitionResult === 'string' ? recognitionResult : '';
+
+  if (!text.trim()) {
+    // 没识别到文字（no-speech 或空结果）：仅当确实录到音频时才提示
+    if (blob && blob.size > 0) {
+      showStatus(sid, part, '未识别到语音，请再试一次。', true);
+    } else {
+      showStatus(sid, part, '');
+    }
+    return;
+  }
+
+  // 正常：有文字，评分
+  showStatus(sid, part, '');
+  const compare = compareWords(targetText, text);
+  const score = calculateScore(compare);
+  showResult(sid, part, text, compare, score);
+
+  // 生成回放（若有音频）
+  if (blob && blob.size > 0) {
+    setupPlayback(sid, part, blob);
+  }
+
+  // 标记本句已完成（录过音即视为练习结束），解锁"下一句"按钮
+  if (!sentenceCompleted[sid]) {
+    sentenceCompleted[sid] = true;
+    updateNavButtons(sid);
+  }
+
+  // 更新最佳得分（仅整句和句3计入进度）
+  if (part === 'full') {
+    const current = bestScores[sid];
+    if (current === null || score > current) bestScores[sid] = score;
+    updateProgress();
+    // 显示"再练一次"按钮
+    const retryBtn = document.querySelector(`[data-action="retry-full"][data-sentence="${sid}"]`);
+    if (retryBtn) retryBtn.style.display = 'inline-flex';
+  }
+}
+
+/**
+ * 更新导航栏按钮状态（不重渲染整个卡片，保留评分结果）
+ */
+function updateNavButtons(sid) {
+  const nextBtn = document.querySelector('[data-action="next-sentence"]');
+  const hint = document.querySelector('.nav-hint');
+  if (nextBtn && sentenceCompleted[sid] && currentSentenceIdx < SENTENCES.length - 1) {
+    nextBtn.disabled = false;
+  }
+  if (hint) hint.remove();
+}
+
+/**
+ * 显示状态提示
+ */
+function showStatus(sid, part, msg, isError = false) {
+  const el = document.querySelector(`[data-role="status"][data-sentence="${sid}"][data-part="${part}"]`);
+  if (el) {
+    el.textContent = msg;
+    el.style.color = isError ? 'var(--red)' : 'var(--red)';
+  }
+}
+
+/**
+ * 渲染结果区
+ */
+function showResult(sid, part, recognized, compare, score) {
+  const el = document.querySelector(`[data-role="result"][data-sentence="${sid}"][data-part="${part}"]`);
+  if (!el) return;
+  const fb = getFeedback(score);
+
+  const wordsHtml = compare.map(r =>
+    `<span class="w ${r.status}" title="${r.matched ? `识别到: ${r.matched}` : '未识别到'}">${r.word}</span>`
+  ).join(' ');
+
+  el.innerHTML = `
+    <div class="result-box">
+      <div class="r-label">🎤 你说的是：</div>
+      <div class="recognized-text">${escapeHtml(recognized)}</div>
+    </div>
+    <div class="result-box">
+      <div class="r-label">📊 逐词反馈（
+        <span style="color:var(--green)">绿色 = 正确</span> ·
+        <span style="color:var(--black-word)">黑色 = 基本可接受</span> ·
+        <span style="color:var(--red)">红色 = 漏读/错误</span> ）</div>
+      <div class="word-feedback">${wordsHtml}</div>
+    </div>
+    <div class="score-row">
+      <div class="score-badge">${score} 分</div>
+      <div class="feedback-msg ${fb.cls}">${fb.text}</div>
+    </div>
+    ${part !== 'full' ? `<button class="btn btn-gold" data-action="retry-part" data-sentence="${sid}" data-part="${part}">↻ 再练一次</button>` : ''}
+  `;
+  el.classList.add('active');
+
+  // 绑定"再练一次"（分段模式动态生成的按钮）
+  if (part !== 'full') {
+    const retryBtn = el.querySelector('[data-action="retry-part"]');
+    if (retryBtn) {
+      retryBtn.addEventListener('click', () => resetResult(sid, part));
+    }
+  }
+}
+
+/**
+ * 重置结果区
+ */
+function resetResult(sid, part) {
+  const el = document.querySelector(`[data-role="result"][data-sentence="${sid}"][data-part="${part}"]`);
+  if (el) { el.innerHTML = ''; el.classList.remove('active'); }
+  showStatus(sid, part, '');
+}
+
+/**
+ * 更新总进度与平均分
+ */
+function updateProgress() {
+  const scores = [bestScores[1], bestScores[2], bestScores[3]].filter(v => v !== null);
+  const completed = scores.length;
+  const avg = completed > 0 ? Math.round(scores.reduce((a, b) => a + b, 0) / completed) : 0;
+  const pct = (completed / 3) * 100;
+
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('overallStats').textContent =
+    `已完成 ${completed} / 3 句 · 平均分 ${avg}`;
+}
+
+/* ---------- 8. 初始化 ---------- */
+function init() {
+  // 检测语音识别支持
+  if (!recognitionSupported) {
+    document.getElementById('browserWarning').classList.add('show');
+  }
+  renderCards();
+  updateProgress();
+  // 检测在线语音服务是否可用
+  checkBackend();
+}
+
+// 确保语音引擎就绪后初始化
+if ('speechSynthesis' in window) {
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+init();
+</script>
+</body>
+</html>
